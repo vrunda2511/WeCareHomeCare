@@ -1,0 +1,47 @@
+.cards {
+  background: linear-gradient(#e5e5e5, #fff, #e5e5e5);
+}
+.container-fluid .row {
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+  width: 100%;
+  /* padding-left: 9rem;
+  padding-right: 9rem; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cardlist {
+  justify-content: center;
+
+  /* justify-content:space-around; */
+}
+.pagenobody{
+  visibility: hidden;
+}
+.pagebody{
+  visibility: visible;
+  animation: slide-left 2s ease;
+}
+@keyframes slide-left {
+  0% {
+      transform: translateX(-800px);
+  }
+  100% {
+
+      transform: translateX(0);
+  }
+}
+.pagebodytitle{
+  visibility: visible;
+  animation: slide-right 2s ease;
+}
+@keyframes slide-right {
+  0% {
+      transform: translateX(1000px);
+  }
+  100% {
+
+      transform: translateX(0);
+  }
+}

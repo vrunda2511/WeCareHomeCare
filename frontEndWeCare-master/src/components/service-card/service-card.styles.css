@@ -1,0 +1,91 @@
+.card {
+  width: 17rem;
+  margin-top: 8rem;
+  border-radius: 10px;
+}
+.card-title {
+  margin-top: 20px;
+}
+.card:hover {
+  box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
+  
+}
+.card-body {
+  padding: 1.5rem 0 !important;
+}
+.card-text {
+  font-size: 0.9rem;
+  padding: 0.4rem 1.5rem;
+}
+
+.card-img-top:hover {
+  transform: scale(1.1);
+  transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+}
+/* .card-img-top:hover{
+  transform: scale(1.8);
+} */
+.overflow {
+  overflow: hidden;
+  /* height: 170px !important; */
+}
+.service-card .overflow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: auto 1 auto;
+}
+.service-card {
+  height: 22rem;
+}
+.background-image {
+  /* width: 450px; */
+  height: 180px;
+  width: 100%;
+  /* height: 100%; */
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+}
+/* .service-card .overflow:first-child{
+  margin-right: 7.5px;
+}
+.service-card .overflow:last-child{
+  margin-left: 7.5px;
+} */
+.button {
+  white-space: nowrap;
+  padding: 10px 30px;
+  margin-top: 10px;
+  font-weight: 500;
+  color: #0d0d0d;
+  /* border-color: #ffe484; */
+  background-color: #ffe484;
+
+  border: 1px solid;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  background-image: none;
+  box-sizing: border-box;
+  /* outline: none; */
+  border-radius: 0.25rem;
+  /* transform: translateY(-50vh); */
+  cursor: pointer;
+  /* transition: all 0.5s ease-in-out; */
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-decoration: none;
+}
+.button:hover {
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  color: #ffe484 !important;
+  opacity: 0.8;
+  background-color: #0d0d0d;
+  /* border-color: #ffe484; */
+  text-decoration: none;
+}

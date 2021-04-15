@@ -1,0 +1,14 @@
+.cartCard{
+    margin: 10px 10px; 
+    display: flex;
+    width: 350px;
+    height: 190px;
+}
+.cartCard:hover {
+    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
+  }
+.cartImage{
+    /* margin-top: 5px; */
+    width: 200px;
+    height: 190px;
+}

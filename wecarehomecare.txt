@@ -1,0 +1,242 @@
+-- public.area definition
+
+-- Drop table
+
+-- DROP TABLE public.area;
+
+CREATE TABLE public.area (
+	id serial NOT NULL,
+	area_name varchar(50) NULL,
+	pincode int4 NULL,
+	city varchar(50) NULL,
+	state varchar(50) NULL,
+	CONSTRAINT area_pkey PRIMARY KEY (id)
+);
+
+-- Permissions
+
+ALTER TABLE public.area OWNER TO postgres;
+GRANT ALL ON TABLE public.area TO postgres;
+
+
+-- public.customer definition
+
+-- Drop table
+
+-- DROP TABLE public.customer;
+
+CREATE TABLE public.customer (
+	firstname varchar(50) NULL,
+	lastname varchar(50) NULL,
+	gender varchar(8) NULL,
+	mobile_no int8 NULL,
+	email varchar(60) NULL,
+	"password" text NULL,
+	address text NULL,
+	image text NULL,
+	created_date date NULL DEFAULT CURRENT_DATE,
+	modified_date date NULL DEFAULT CURRENT_DATE,
+	customer_id serial NOT NULL,
+	area varchar(50) NULL,
+	"role" int4 NULL DEFAULT 1, -- 1 for active 0 for deactive
+	city varchar(50) NULL,
+	CONSTRAINT customer_pkey PRIMARY KEY (customer_id)
+);
+
+-- Column comments
+
+COMMENT ON COLUMN public.customer."role" IS '1 for active 0 for deactive';
+
+-- Permissions
+
+ALTER TABLE public.customer OWNER TO postgres;
+GRANT ALL ON TABLE public.customer TO postgres;
+
+
+-- public.emailotp definition
+
+-- Drop table
+
+-- DROP TABLE public.emailotp;
+
+CREATE TABLE public.emailotp (
+	emailotp_id serial NOT NULL,
+	email varchar(50) NOT NULL,
+	otp int4 NULL,
+	otp_status int2 NOT NULL DEFAULT 0, -- 0 for activated and 1 for deactivated
+	created_date date NULL DEFAULT CURRENT_DATE
+);
+
+-- Column comments
+
+COMMENT ON COLUMN public.emailotp.otp_status IS '0 for activated and 1 for deactivated';
+
+-- Permissions
+
+ALTER TABLE public.emailotp OWNER TO postgres;
+GRANT ALL ON TABLE public.emailotp TO postgres;
+
+
+-- public.provider definition
+
+-- Drop table
+
+-- DROP TABLE public.provider;
+
+CREATE TABLE public.provider (
+	firstname varchar(50) NULL,
+	lastname varchar(50) NULL,
+	gender varchar(6) NULL,
+	mobile_no int8 NULL,
+	email varchar(30) NULL,
+	address text NULL,
+	image text NULL,
+	created_date date NULL DEFAULT CURRENT_DATE,
+	modified_date date NULL DEFAULT CURRENT_DATE,
+	provider_id serial NOT NULL,
+	area varchar(40) NULL,
+	CONSTRAINT provider_pkey PRIMARY KEY (provider_id)
+);
+
+-- Permissions
+
+ALTER TABLE public.provider OWNER TO postgres;
+GRANT ALL ON TABLE public.provider TO postgres;
+
+
+-- public.services definition
+
+-- Drop table
+
+-- DROP TABLE public.services;
+
+CREATE TABLE public.services (
+	service_name varchar(50) NULL,
+	service_id serial NOT NULL,
+	service_image text NULL,
+	created_date date NULL DEFAULT CURRENT_DATE,
+	modified_date date NULL DEFAULT CURRENT_DATE,
+	CONSTRAINT services_pkey PRIMARY KEY (service_id)
+);
+
+-- Permissions
+
+ALTER TABLE public.services OWNER TO postgres;
+GRANT ALL ON TABLE public.services TO postgres;
+
+
+-- public.subservices definition
+
+-- Drop table
+
+-- DROP TABLE public.subservices;
+
+CREATE TABLE public.subservices (
+	service_id serial NOT NULL,
+	provider_id int4 NULL,
+	sub_servicename varchar(100) NULL,
+	image text NULL,
+	price float8 NULL,
+	short_description varchar(200) NULL,
+	long_description text NULL,
+	time_duration varchar(30) NULL,
+	subservice_id serial NOT NULL,
+	created_date date NULL DEFAULT CURRENT_DATE,
+	modified_date date NULL DEFAULT CURRENT_DATE,
+	CONSTRAINT subservices_pkey PRIMARY KEY (subservice_id),
+	CONSTRAINT subservices_service_id_fkey FOREIGN KEY (service_id) REFERENCES services(service_id)
+);
+
+-- Permissions
+
+ALTER TABLE public.subservices OWNER TO postgres;
+GRANT ALL ON TABLE public.subservices TO postgres;
+
+
+-- public.cart definition
+
+-- Drop table
+
+-- DROP TABLE public.cart;
+
+CREATE TABLE public.cart (
+	subservice_id serial NOT NULL,
+	customer_id serial NOT NULL,
+	created_date date NULL DEFAULT CURRENT_DATE,
+	modified_date date NULL DEFAULT CURRENT_DATE,
+	cart_id serial NOT NULL,
+	status int2 NOT NULL DEFAULT 0, -- 0 for not placeorder and 1 for placeorder
+	CONSTRAINT cart_pkey PRIMARY KEY (cart_id),
+	CONSTRAINT cart_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+	CONSTRAINT cart_subservice_id_fkey FOREIGN KEY (subservice_id) REFERENCES subservices(subservice_id)
+);
+
+-- Column comments
+
+COMMENT ON COLUMN public.cart.status IS '0 for not placeorder and 1 for placeorder';
+
+-- Permissions
+
+ALTER TABLE public.cart OWNER TO postgres;
+GRANT ALL ON TABLE public.cart TO postgres;
+
+
+-- public.feedback definition
+
+-- Drop table
+
+-- DROP TABLE public.feedback;
+
+CREATE TABLE public.feedback (
+	customer_id serial NOT NULL,
+	subservice_id serial NOT NULL,
+	review varchar(100) NULL,
+	rating int4 NULL,
+	created_date date NULL DEFAULT CURRENT_DATE,
+	modified_date date NULL DEFAULT CURRENT_DATE,
+	feedback_id serial NOT NULL,
+	status int4 NOT NULL DEFAULT 0, -- 0 for not approve 1 for approve
+	CONSTRAINT feedback_pkey PRIMARY KEY (feedback_id),
+	CONSTRAINT feedback_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+	CONSTRAINT feedback_subservice_id_fkey FOREIGN KEY (subservice_id) REFERENCES subservices(subservice_id)
+);
+
+-- Column comments
+
+COMMENT ON COLUMN public.feedback.status IS '0 for not approve 1 for approve';
+
+-- Permissions
+
+ALTER TABLE public.feedback OWNER TO postgres;
+GRANT ALL ON TABLE public.feedback TO postgres;
+
+
+-- public.placeorder definition
+
+-- Drop table
+
+-- DROP TABLE public.placeorder;
+
+CREATE TABLE public.placeorder (
+	customer_id serial NOT NULL,
+	subservice_id serial NOT NULL,
+	order_date date NULL DEFAULT CURRENT_DATE,
+	address text NULL,
+	area varchar(50) NOT NULL,
+	amount int4 NULL,
+	created_date date NULL DEFAULT CURRENT_DATE,
+	modified_date date NULL DEFAULT CURRENT_DATE,
+	placeorder_id serial NOT NULL,
+	order_status varchar(20) NULL DEFAULT 'pending'::character varying,
+	city varchar(40) NULL,
+	pincode int4 NULL,
+	time_slot varchar(20) NULL,
+	CONSTRAINT placeorder_pkey PRIMARY KEY (placeorder_id),
+	CONSTRAINT placeorder_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+	CONSTRAINT placeorder_subservice_id_fkey FOREIGN KEY (subservice_id) REFERENCES subservices(subservice_id)
+);
+
+-- Permissions
+
+ALTER TABLE public.placeorder OWNER TO postgres;
+GRANT ALL ON TABLE public.placeorder TO postgres;

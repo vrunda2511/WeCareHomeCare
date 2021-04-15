@@ -1,0 +1,105 @@
+.orderCard {
+  
+  width: 345px;
+}
+.lissst {
+  justify-content: center;
+  margin-left: 15px !important;
+  margin-right: 15px !important;
+}
+.header {
+  margin-top: 100px;
+  /* margin-left: 100px; */
+  font-size: xx-large;
+  text-align: center;
+}
+.card {
+  margin: 40px 40px;
+  width: 330px;
+}
+
+.card:hover {
+  box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
+}
+
+.spanTag {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-top: 10px !important;
+  /* background-color: #eee; */
+}
+.batonlist{
+  display: flex !important;
+  justify-content: space-between!important;
+  background-color: black;
+  padding-left: 15px!important;
+  padding-right: 15px!important;
+
+}
+.baton {
+  
+  /* display: flex !important; */
+  /* justify-content: space-between !important; */
+  /* margin-top: 10px!important; */
+  background-color: black;
+  /* justify-content: flex-end!important; */
+  
+  font-weight: bold !important;
+  text-decoration: none!important;
+  color:#ffe484!important;
+}
+.baton1{
+  border:1px solid #ffe484!important;
+}
+.baton1:hover {
+  color:black!important;
+  background: #ffe484!important;
+  border: 1px solid #000!important;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+  border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.baton2{
+  border:1px solid #000!important;
+  
+ 
+  /* margin-top: 10px!important; */
+}
+.baton2:hover {
+  color:black!important;
+  background: #ffe484!important;
+  border: 1px solid #000!important;
+  
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+  border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.price {
+  font-weight: 800;
+  /* font-weight: bolder; */
+}
+.baton3{
+  align-items: center!important;
+  font-weight: bold !important;
+  text-decoration: none!important;
+  color:#ffe484!important;
+  border: 1px solid #fff!important;
+  margin-top: 20px!important;
+
+}
+.baton3:hover {
+  color:black!important;
+  background: #ffe484!important;
+  border: 1px solid #000!important;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+  border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.place{
+  margin-top: 150px!important;
+  margin-bottom: 80px!important;
+  width:600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cardstatus{
+  display: flex!important;
+  justify-content: space-between!important;
+}

@@ -1,0 +1,30 @@
+.subServiceCard {
+  padding: 0px 30px !important;
+}
+
+.card:hover {
+  box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
+}
+
+.spanTag {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-top: 10px !important;
+  /* background-color: #eee; */
+}
+.baton {
+  display: flex !important;
+  justify-content: space-between !important;
+  /* margin-top: 10px!important; */
+  background-color: #eee;
+  font-weight: bold !important;
+}
+.price {
+  font-weight: 800;
+  /* font-weight: bolder; */
+}
+.ratings {
+  margin: 0px 10px !important;
+  display: flex;
+  justify-content: space-between;
+}
